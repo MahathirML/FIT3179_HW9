@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 700,
   "height": 450,
-  "title": "Annual Passenger Count for Train Stations in Melbourne (FY 2023-2024)",
+  "title": "Annual Passenger Count for Train Stations in Melbourne (Fiscal Year 2023-2024)",
   "projection": {"type": "mercator"},
   "config": {
     "background": "lightblue" 
