@@ -52,7 +52,8 @@
         },
         "tooltip": [
           {"field": "Stop_name", "type": "nominal", "title": "Station Name"},
-          {"field": "Pax_annual", "type": "quantitative", "title": "Annual Passengers"},
+          {"field": "Pax_annual", "type": "quantitative", "title": "Annual Passengers",
+          "format": ","},
           {"field": "Stop_lat", "type": "quantitative", "title": "Latitude"},
           {"field": "Stop_long", "type": "quantitative", "title": "Longitude"}
         ]
