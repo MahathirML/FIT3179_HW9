@@ -1,27 +1,79 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
+  <!-- Import Vega & Vega-Lite -->
   <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
   
-  
-  <!-- CSS file -->
+  <!-- CSS file for styles -->
   <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
   
 </head>
 <body>
-  
-<div id="symbol_map"></div>
+  <!-- Big Title Section -->
+  <h1>Victorian Train Stations Analysis</h1>
+  <p class="caption">An analysis of passenger distribution and the regional vs metropolitan station breakdown in Melbourne for FY 2023-2024.</p>
 
-<script type="text/javascript">
+  <!-- Visualization Container -->
+  <div id="visualization-container">
+    <!-- Map Visualization Block -->
+    <div class="visualization-block map-block">
+      <!-- Text on the left -->
+      <div class="text">
+        <h3>Annual Passenger Count for Melbourne Train Stations</h3>
+        <p style="font-style: italic;">This map shows the geographic locations of train stations in Melbourne, colored by the annual passenger count. Hover over each station to view detailed information about the station's name, annual passengers, and coordinates.</p>
+      </div>
+      <!-- Visualization on the right -->
+      <div id="symbol_map"></div>
+    </div>
 
-  var spec2 = "js/ps_map.vg.json";
-  vegaEmbed('#symbol_map', spec2).then(function(result) {
-    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-  }).catch(console.error);
-</script>
+    <!-- Pie Chart Visualization Block -->
+    <div class="visualization-block pie-chart-block">
+      <!-- Visualization on the left -->
+      <div id="pie_chart"></div>
+      <!-- Text on the right -->
+      <div class="text">
+        <h3>Regional vs Metropolitan Stations in Melbourne</h3>
+        <p style="font-style: italic;">The pie chart highlights the distribution of regional and metropolitan train stations in Melbourne, offering a quick glance at the proportion of each type.</p>
+      </div>
+    </div>
+
+    <!-- Bar Chart Visualization Block -->
+    <div class="visualization-block bar-chart-block">
+      <!-- Text on the left -->
+      <div class="text">
+        <h3>Most Used Stations in Melbourne</h3>
+        <p style="font-style: italic;">The bar chart shows the top 10 most used train stations in Melbourne, ranked by annual passenger count.</p>
+      </div>
+      <!-- Bar chart visualization -->
+      <div id="bar_chart"></div>
+    </div>
+  </div>
+
+  <!-- Embed the map visualization -->
+  <script type="text/javascript">
+    var spec2 = "js/ps_map.vg.json";
+    vegaEmbed('#symbol_map', spec2).then(function(result) {
+      // Access the Vega view instance as result.view
+    }).catch(console.error);
+  </script>
+
+  <!-- Embed the pie chart visualization -->
+  <script type="text/javascript">
+    var pieSpec = "js/pie_chart.vg.json";
+    vegaEmbed('#pie_chart', pieSpec).then(function(result) {
+      // Access the Vega view instance as result.view
+    }).catch(console.error);
+  </script>
+
+  <!-- Embed the bar chart visualization -->
+  <script type="text/javascript">
+    var barSpec = "js/bar_chart.vg.json";
+    vegaEmbed('#bar_chart', barSpec).then(function(result) {
+      // Access the Vega view instance as result.view
+    }).catch(console.error);
+  </script>
 
 </body>
 </html>

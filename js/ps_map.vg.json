@@ -24,11 +24,11 @@
     },
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/MahathirML/FIT3179_HW9/refs/heads/main/data/stations.csv"
+        "url": "https://raw.githubusercontent.com/MahathirML/FIT3179_HW9/refs/heads/main/data/regional_stations.csv"
       },
       "transform": [
         {
-          "filter": "datum.Stop_long >= 144 && datum.Stop_long <= 145.2 && datum.Stop_lat >= -38 && datum.Stop_lat <= -37.6"
+          "filter": "datum.Stop_long >= 144.4 && datum.Stop_long <= 145.2 && datum.Stop_lat >= -38 && datum.Stop_lat <= -37.6 && datum.Regional == 0"
         }
       ],
       "mark": {
@@ -43,6 +43,43 @@
           "type": "quantitative",
           "title": "Annual Passengers",
           "scale": {"scheme": "blues", "reverse": true}
+        },
+        "size": {
+          "field": "Pax_annual",
+          "type": "quantitative",
+          "title": "Annual Passengers",
+          "scale": {"range": [25, 250]}
+        },
+        "tooltip": [
+          {"field": "Stop_name", "type": "nominal", "title": "Station Name"},
+          {"field": "Pax_annual", "type": "quantitative", "title": "Annual Passengers",
+          "format": ","},
+          {"field": "Stop_lat", "type": "quantitative", "title": "Latitude"},
+          {"field": "Stop_long", "type": "quantitative", "title": "Longitude"}
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/MahathirML/FIT3179_HW9/refs/heads/main/data/regional_stations.csv"
+      },
+      "transform": [
+        {
+          "filter": "datum.Stop_long >= 144.4 && datum.Stop_long <= 145.2 && datum.Stop_lat >= -38 && datum.Stop_lat <= -37.6 && datum.Regional == 1"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "tooltip": {"content": "data"}
+      },
+      "encoding": {
+        "longitude": {"field": "Stop_long", "type": "quantitative"},
+        "latitude": {"field": "Stop_lat", "type": "quantitative"},
+        "color": {
+          "field": "Pax_annual",
+          "type": "quantitative",
+          "title": "Annual Passengers",
+          "scale": {"scheme": "reds", "reverse": true}
         },
         "size": {
           "field": "Pax_annual",

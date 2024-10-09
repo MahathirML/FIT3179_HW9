@@ -1,8 +1,77 @@
-#symbol_map {
-	top:100px;
-	bottom: 100px; 
-	left: 100px;
-	right: 100px;
-	/*height: 1000px;
-	width: 800px;*/
-}
+/* Flex container for visualization blocks */
+#visualization-container {
+	margin-top: 50px;
+  }
+  
+  /* General styling for each visualization block */
+  .visualization-block {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 50px auto;
+	max-width: 1200px;
+	padding: 20px;
+  }
+  
+  /* Specific styles for map layout */
+  .map-block {
+	flex-direction: row; /* Map block has text on the left, visualization on the right */
+  }
+  
+  /* Specific styles for pie chart layout */
+  .pie-chart-block {
+	flex-direction: row-reverse; /* Pie chart block has visualization on the left, text on the right */
+  }
+  
+  /* Styling for the text */
+  .text {
+	flex-basis: 50%;
+	padding: 20px;
+	text-align: left;
+  }
+  
+  h3 {
+	margin-bottom: 10px;
+  }
+  
+  p {
+	font-size: 1em;
+	color: #333;
+  }
+  
+  /* Map visualization dimensions */
+  #symbol_map {
+	flex-basis: 50%;
+	width: 100%;
+	height: 500px;
+  }
+  
+  /* Pie chart visualization dimensions */
+  #pie_chart {
+	flex-basis: 50%;
+	width: 100%;
+	height: 350px;
+  }
+  
+  /* Bar chart visualization dimensions */
+  #bar_chart {
+	flex-basis: 50%;
+	width: 100%;
+	height: 400px;
+  }
+  
+  /* Styling for the overall page */
+  body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: #f8f9fa;
+	color: #333;
+	text-align: center;
+  }
+  
+  h1 {
+	font-size: 2.5em;
+	margin-top: 30px;
+  }
+  

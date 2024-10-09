@@ -1,0 +1,53 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 500,
+  "height": 300,
+  "title": {
+    "text": "Top 10 Most Used Train Stations in Melbourne",
+    "fontSize": 18,
+    "subtitle": "Based on Annual Passenger Count (FY 2023-2024)",
+    "subtitleFontSize": 14
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/MahathirML/FIT3179_HW9/refs/heads/main/data/regional_stations.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.Pax_annual > 3000000"
+    },
+    {
+      "sort": [{"field": "Pax_annual", "order": "descending"}]
+    },
+    {
+      "window": [{"op": "rank", "as": "rank"}],
+      "sort": [{"field": "Pax_annual", "order": "descending"}]
+    },
+    {
+      "filter": "datum.rank <= 10"
+    }
+  ],
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "field": "Pax_annual",
+      "type": "quantitative",
+      "title": "Annual Passenger Count",
+      "axis": {"labelAngle": 0}
+    },
+    "y": {
+      "field": "Stop_name",
+      "type": "nominal",
+      "sort": "-x",
+      "title": "Station Name"
+    },
+    "color": {
+      "field": "Stop_name",
+      "type": "nominal",
+      "legend": null
+    },
+    "tooltip": [
+      {"field": "Stop_name", "type": "nominal", "title": "Station Name"},
+      {"field": "Pax_annual", "type": "quantitative", "title": "Annual Passenger Count"}
+    ]
+  }
+}
