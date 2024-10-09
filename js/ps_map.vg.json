@@ -7,6 +7,19 @@
   "config": {
     "background": "lightblue" 
   },
+  "params": [
+    {
+      "name": "distanceFilter",
+      "value": 25,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 25,  
+        "step": 1,
+        "name": "Distance from City Center (km): "
+      }
+    }
+  ],
   "layer": [
     {
       "data": {
@@ -28,7 +41,11 @@
       },
       "transform": [
         {
-          "filter": "datum.Stop_long >= 144.4 && datum.Stop_long <= 145.2 && datum.Stop_lat >= -38 && datum.Stop_lat <= -37.6 && datum.Regional == 0"
+          "calculate": "6371 * acos(sin(-37.8183 * 3.14159 / 180) * sin(datum.Stop_lat * 3.14159 / 180) + cos(-37.8183 * 3.14159 / 180) * cos(datum.Stop_lat * 3.14159 / 180) * cos((datum.Stop_long - 144.9671) * 3.14159 / 180))",
+          "as": "distanceFromCity"
+        },
+        {
+          "filter": "datum.distanceFromCity <= distanceFilter"
         }
       ],
       "mark": {
@@ -52,47 +69,10 @@
         },
         "tooltip": [
           {"field": "Stop_name", "type": "nominal", "title": "Station Name"},
-          {"field": "Pax_annual", "type": "quantitative", "title": "Annual Passengers",
-          "format": ","},
+          {"field": "Pax_annual", "type": "quantitative", "title": "Annual Passengers", "format": ","},
           {"field": "Stop_lat", "type": "quantitative", "title": "Latitude"},
-          {"field": "Stop_long", "type": "quantitative", "title": "Longitude"}
-        ]
-      }
-    },
-    {
-      "data": {
-        "url": "https://raw.githubusercontent.com/MahathirML/FIT3179_HW9/refs/heads/main/data/regional_stations.csv"
-      },
-      "transform": [
-        {
-          "filter": "datum.Stop_long >= 144.4 && datum.Stop_long <= 145.2 && datum.Stop_lat >= -38 && datum.Stop_lat <= -37.6 && datum.Regional == 1"
-        }
-      ],
-      "mark": {
-        "type": "circle",
-        "tooltip": {"content": "data"}
-      },
-      "encoding": {
-        "longitude": {"field": "Stop_long", "type": "quantitative"},
-        "latitude": {"field": "Stop_lat", "type": "quantitative"},
-        "color": {
-          "field": "Pax_annual",
-          "type": "quantitative",
-          "title": "Annual Passengers",
-          "scale": {"scheme": "reds", "reverse": true}
-        },
-        "size": {
-          "field": "Pax_annual",
-          "type": "quantitative",
-          "title": "Annual Passengers",
-          "scale": {"range": [25, 250]}
-        },
-        "tooltip": [
-          {"field": "Stop_name", "type": "nominal", "title": "Station Name"},
-          {"field": "Pax_annual", "type": "quantitative", "title": "Annual Passengers",
-          "format": ","},
-          {"field": "Stop_lat", "type": "quantitative", "title": "Latitude"},
-          {"field": "Stop_long", "type": "quantitative", "title": "Longitude"}
+          {"field": "Stop_long", "type": "quantitative", "title": "Longitude"},
+          {"field": "distanceFromCity", "type": "quantitative", "title": "Distance from City (km)", "format": ".2f"}
         ]
       }
     }
