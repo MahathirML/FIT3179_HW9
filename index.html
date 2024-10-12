@@ -54,7 +54,7 @@
   <!-- Embed the map visualization -->
   <script type="text/javascript">
     var spec2 = "js/ps_map.vg.json";
-    vegaEmbed('#symbol_map', spec2).then(function(result) {
+    vegaEmbed('#symbol_map', spec2, { actions: false }).then(function(result) {
       // Access the Vega view instance as result.view
     }).catch(console.error);
   </script>
@@ -62,7 +62,7 @@
   <!-- Embed the pie chart visualization -->
   <script type="text/javascript">
     var pieSpec = "js/pie_chart.vg.json";
-    vegaEmbed('#pie_chart', pieSpec).then(function(result) {
+    vegaEmbed('#pie_chart', pieSpec, { actions: false }).then(function(result) {
       // Access the Vega view instance as result.view
     }).catch(console.error);
   </script>
@@ -70,7 +70,7 @@
   <!-- Embed the bar chart visualization -->
   <script type="text/javascript">
     var barSpec = "js/bar_chart.vg.json";
-    vegaEmbed('#bar_chart', barSpec).then(function(result) {
+    vegaEmbed('#bar_chart', barSpec, { actions: false }).then(function(result) {
       // Access the Vega view instance as result.view
     }).catch(console.error);
   </script>
